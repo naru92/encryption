@@ -108,16 +108,24 @@ public class RSA {
 
 		return keyFactory.generatePublic(keySpecX509);
 	}
-
+	
+	/**
+	 * RSA 키쌍을 생성을 해봅니다.
+	 * 평문 -> 암호화 RSA -> 복호화 RSA -> 공개키생성 -> 프라이빗키생성 -> 평문암호화 -> 평문 복호화
+	 * 
+	  
+	 * 암호화할 문자열 : "비밀번호입니다."
+	 
+	 **/
 	public static void main(String[] args) throws Exception {
-		// RSA 키쌍을 생성합니다.
+		
 
 		KeyPair keyPair = RSA.genRSAKeyPair();
 
 		PublicKey publicKey = keyPair.getPublic();
 		PrivateKey privateKey = keyPair.getPrivate();
 
-		String plainText = "암호화 할 문자열 입니다.";
+		String plainText = "비밀번호입니다";
 
 		// Base64 인코딩된 암호화 문자열 입니다.
 		String encrypted = RSA.encryptRSA(plainText, publicKey);
